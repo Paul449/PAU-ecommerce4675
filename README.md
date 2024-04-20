@@ -25,7 +25,7 @@ N/A
 
 # Usage
 
-This application will be available on the internet once the back end process is completed to satify cusdtomer needs. 
+This application will be available on the internet once the back end process is completed to satify customer needs. 
 
 # Contribution
 
