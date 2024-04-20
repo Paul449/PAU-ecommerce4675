@@ -2,7 +2,7 @@
 
 # Description
 
-The purpose of this application is to 
+The purpose of this application is to creta the back end for a ecommerce application to allow
 
 # Table of Contents
 
@@ -40,4 +40,4 @@ Github: (https://github.com/Paul449/PAU-ecommerce4675)
 
 # License
 
-MIT License: ()
+MIT License:(https://opensource.org/license/mit)
