@@ -14,15 +14,19 @@ ProductTag.init(
     },
     product_id:{
       type: DataTypes.INTEGER,
-      id: Product.hasOne(product_id,{
-        foreignKey:'id'
-      }),
+      allowNull:false,
+      references:{
+        model:'Product',
+        key:'id'
+      }
     },
     tag_id:{
       type: DataTypes.INTEGER,
-      id: Tag.hasOne(tag_id,{
-        foreignKey:'id'
-      })
+      allowNull:false,
+      references:{
+        model:'Tag',
+        key:'id'
+      }
     }
   },
   
