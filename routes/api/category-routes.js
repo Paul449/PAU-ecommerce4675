@@ -8,13 +8,13 @@ router.get('/', async(req, res) => {
   // find all categories
   // be sure to include its associated Products
  try{
-  const category = await Category.findAll({
+  const categoryData = await Category.findAll({
     include:[{model:Product}]
   })
-  res.status(200).json(category);
+  res.status(200).json(categoryData);
  }
  catch(error){
-
+ res.status(500).json({message:'error coming from internal server'})
  }
 });
 
@@ -23,20 +23,23 @@ router.get('/:id', async(req, res) => {
   // be sure to include its associated Products
  try{
 
-  const categoryData = await Category.findByPk(req.params.id,{
+  const oneCategory = await Category.findByPk(req.params.id,{
     include:[{model:Product}]
   })
-  res.status(200).json(categoryData);
+  if(oneCategory !== true){
+  res.status(404).json({message:'not found'})
+  return;
+  }
+  res.status(200).json(oneCategory);
  }
  catch(error){
-  res.status(400).json(error);
+  res.status(500).json(error);
  }
 });
 
 router.post('/', async(req, res) => {
   // create a new category
   try{
-
     const categoryData = await Category.create(req.body);
     res.status(200).json(categoryData);
   }
@@ -49,9 +52,13 @@ router.post('/', async(req, res) => {
 router.put('/:id', async(req, res) => {
   // update a category by its `id` value
   try{
-
-    const categoryData = await Category.update(req.params.id)
-   res.status(200).json(categoryData)
+  const categoryData = await Category.update(req.body,{
+    where:[{id:req.params.id}]
+  });
+  if(categoryData[0] !== true){
+    res.status(404).json({message:'no ID found'})
+  }
+  res.status(200).json(categoryData);
   }
   catch(error){
     res.status(400).json(error);
@@ -67,10 +74,13 @@ router.delete('/:id', async(req, res) => {
         id: req.params.id
       }]
     })
-    res.status(200),categoryData.json();
+    if(categoryData !== true){
+      res.status(404).json({message:'id not found on category'})
+    }
+    res.status(200).json(categoryData);
   }
   catch(error){
-    res.status(400),json(error);
+    res.status(400).json(error);
   }
 });
 

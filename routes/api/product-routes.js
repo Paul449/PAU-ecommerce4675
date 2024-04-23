@@ -10,9 +10,9 @@ router.get('/', async(req, res) => {
   try{
 
     const Products = await Product.findAll({
-      include:[{model:Category,Tag}]
+      include:[{model:Category},{model:Tag}]
     })
-    res.status(200);
+    res.status(200).json(Products);
   }
   catch(error){
     res.status(400),json('Bad Request',error)
@@ -27,9 +27,9 @@ router.get('/:id', async(req, res) => {
   try{
 
     const Oneproduct = await ProductTag.findOne({
-      include:[{model: Category, Tag}]
+      include:[{model:Category},{model:Tag}]
     })
-    res.status(200);
+    res.status(200).json(Oneproduct);
   }
   catch(error){
   
@@ -118,10 +118,12 @@ router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try{
 
-    const Product = await ProductTag.destroy()
+    const Product = await ProductTag.destroy({
+      where:[{id: req.params.id}]
+    })
   }
   catch(error){
-
+    res.status()
   }
 });
 
