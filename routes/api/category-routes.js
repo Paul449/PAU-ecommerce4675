@@ -14,7 +14,7 @@ router.get('/', async(req, res) => {
   res.status(200).json(categoryData);
  }
  catch(error){
- res.status(500).json({message:'error coming from internal server'})
+ res.status(500).json(error);
  }
 });
 
@@ -56,7 +56,8 @@ router.put('/:id', async(req, res) => {
     where:[{id:req.params.id}]
   });
   if(categoryData[0] !== true){
-    res.status(404).json({message:'no ID found'})
+    res.status(404).json({message:'no ID found'});
+    return;
   }
   res.status(200).json(categoryData);
   }
@@ -75,7 +76,8 @@ router.delete('/:id', async(req, res) => {
       }]
     })
     if(categoryData !== true){
-      res.status(404).json({message:'id not found on category'})
+      res.status(404).json({message:'id not found on category'});
+      return;
     }
     res.status(200).json(categoryData);
   }
