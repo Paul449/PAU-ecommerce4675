@@ -118,9 +118,9 @@ router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try{
 
-    const deleteProduct = await ProductTag.destroy()
+    const Product = await ProductTag.destroy()
   }
-  catch{
+  catch(error){
 
   }
 });
