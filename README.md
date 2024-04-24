@@ -33,7 +33,8 @@ N/A
 
 # Screentify Video
 
-Video:
+Video:[ecommerce Paul.webm](https://github.com/Paul449/PAU-ecommerce4675/assets/81491408/5e177771-8f8f-4f6a-b831-d67c34bb5674)
+
 
 # Github Repository
 
